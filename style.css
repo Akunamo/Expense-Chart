@@ -92,7 +92,7 @@ main {
     align-items: center;
     justify-content: flex-end;
     height: 100%;
-    width: min(3rem,100%);
+    width: 100%;
     position: relative;
 }
 
@@ -115,7 +115,7 @@ main {
 }
 
 .expense-bar {
-    width: 90%;
+    width: 80%;
     background-color: var(--Soft-red);
     border-radius: .2em .2em  0 0;
     scale:1 0;
