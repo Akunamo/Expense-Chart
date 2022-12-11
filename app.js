@@ -1,26 +1,7 @@
-// const expenseChart = document.querySelector('.expense-chart');
-
-// let spent = []
-// let html = document.createElement('div');
-// fetch('/data.json')
-//     .then(data => data.json())
-//     .then(data => {
-//         data.forEach(exp => {
-//             data = `<div><span class='expense-bar' data-value='${exp.amount}'></span><span>${exp.day}</span></div>`
-//             spent.push(data)
-//             html.append(data);
-//         });
-//         // expenseChart.textContent = html;
-//         console.log(html);
-//     })
-
-
-    // Using innerText
-
 const expenseChart = document.querySelector('.expense-chart');
 
 let spent = []
-fetch('/data.json')
+fetch('data.json')
     .then(data => data.json())
     .then(data => {
         data.forEach(exp => {
@@ -35,13 +16,12 @@ function animateChart(){
     let expenses = expenseChart.querySelectorAll('.expense-bar');
     let max = 0;
     expenses.forEach(e => {
-        let amount = e.getAttribute('data-value')
+        let amount = parseFloat(e.getAttribute('data-value'))
         if(max < amount) max = amount;
     })
     setTimeout(_ => {
         setHeight(max,expenses)
     },1000)
-    console.log(max);
 }
 
 function setHeight(high,arr) {
@@ -49,8 +29,8 @@ function setHeight(high,arr) {
     arr.forEach((a,i)=> {
         let amount = parseFloat(a.getAttribute('data-value'))
         // console.log(amount*50/45,Math.round(amount*100/high));
-        a.style.height = Math.round(amount*200/high) + 'px';
-        a.style.transitionDelay = i*100 +'ms';
+        a.style.height = `${Math.round(amount*200/high)}px`;
+        a.style.transitionDelay = `${i*100}ms`;
         a.classList.add('active')
         if(amount === high) a.style.backgroundColor = 'var(--Cyan)'
         sum.push(amount);
